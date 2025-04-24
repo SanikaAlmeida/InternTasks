@@ -21,7 +21,7 @@ const addSchool = (req, res) => {
     return res.status(400).json({ error: validationError });
   }
   const { name, address, latitude, longitude } = schoolData;
-  const query = 'INSERT INTO schools (name, address, latitude, longitude) VALUES (?, ?, ?, ?)';
+  const query = 'INSERT INTO Schools (name, address, latitude, longitude) VALUES (?, ?, ?, ?)';
   connection.query(query, [name, address, latitude, longitude], (err, results) => {
     if (err) {
       console.error(err);
@@ -56,7 +56,7 @@ const listSchools = (req, res) => {
     if (isNaN(userLat) || isNaN(userLon)) {
       return res.status(400).json({ error: 'Latitude and longitude must be valid numbers' });
     }
-    const query = 'SELECT * FROM schools';
+    const query = 'SELECT * FROM Schools';
     connection.query(query, (err, results) => {
       if (err) {
         console.error('Database error:', err);
